@@ -1,5 +1,6 @@
 # VScode
 *.vscode/
+./Process Generator/Build/
 
 # Prerequisites
 *.d
