@@ -2,6 +2,7 @@
 #define PROCESS_H
 #include <stdio.h>
 #include <stdlib.h>
+#include "../Memory/Memory.h"
 
 struct Process {
     int pID;
@@ -20,5 +21,6 @@ struct Process {
 
 struct Process *newProcess(int, int);
 void runProcess();
+struct MNode *firstFit(struct Process *, struct MNode *);
 void printProcess(struct Process *);
 #endif
