@@ -2,11 +2,9 @@
 #define MEMORYARRAY_h
 #include <stdlib.h>
 #include <stdio.h>
-#include <stdbool.h>
 #include <sys/types.h>
 #include <sys/ipc.h>
 #include <sys/shm.h>
-
 
 struct MemoryArray {
     int size;
@@ -15,5 +13,5 @@ struct MemoryArray {
 };
 
 struct MemoryArray* newLocalMemoryArray(int size);
-int newSharedMemoryArray (int size, char* keyFilePath);
+int newSharedMemoryArray(int size, char* keyFilePath);
 #endif

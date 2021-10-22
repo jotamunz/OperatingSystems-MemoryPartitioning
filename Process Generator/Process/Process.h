@@ -18,7 +18,7 @@ struct Process {
     */
 };
 
-struct Process *newProcess(int, int);
+struct Process *newLocalProcess(int pID, int algorithm);
 void runProcess();
-void printProcess(struct Process *);
+void printProcess(struct Process *process);
 #endif

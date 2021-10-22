@@ -2,7 +2,6 @@
 #define PROCESSARRAY_H
 #include <stdlib.h>
 #include <stdio.h>
-#include <stdbool.h>
 #include "../Process/Process.h"
 
 struct ProcessArray {
@@ -11,8 +10,6 @@ struct ProcessArray {
     // semaphore
 };
 
-
 struct ProcessArray* newLocalProcessArray(int size);
-int newSharedProcessArray (int size, char* keyFilePath);
-
+int newSharedProcessArray(int size, char* keyFilePath);
 #endif

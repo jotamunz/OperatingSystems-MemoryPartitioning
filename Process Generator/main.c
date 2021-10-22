@@ -6,7 +6,5 @@
 
 int main()
 {
-
-   printf("Tamano: %ld\n\n", sizeof(struct MemoryArray));
-
+    printf("Hello World\n");
 }
