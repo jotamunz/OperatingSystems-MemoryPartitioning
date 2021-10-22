@@ -52,17 +52,6 @@ void runProcess(){
 
 }
 
-// Returns the first available free node or NULL
-struct MNode *firstFit(struct Process *process, struct MNode *node){
-    while (node != NULL){
-        if (node->free && node->size >= process->size){
-            return node;
-        }
-        node = node->next;
-    }
-    return NULL;
-}
-
 void printProcess(struct Process *process){
     printf("ID: %d\n", process->pID);
     printf("Size: %d\n", process->size);

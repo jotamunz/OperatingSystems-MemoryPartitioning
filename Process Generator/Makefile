@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = 
 LDFLAGS = -lpthread
-OBJFILES = main.o ProcessList/ProcessList.o Process/Process.o Memory/Memory.o
+OBJFILES = main.o ProcessArray/ProcessArray.o Process/Process.o MemoryArray/MemoryArray.o
 TARGET = ./build/out
 
 all: $(TARGET)
