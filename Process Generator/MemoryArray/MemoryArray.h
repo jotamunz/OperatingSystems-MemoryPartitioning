@@ -1,5 +1,6 @@
 #ifndef MEMORYARRAY_h
 #define MEMORYARRAY_h
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <sys/types.h>

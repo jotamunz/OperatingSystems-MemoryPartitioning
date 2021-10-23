@@ -52,6 +52,16 @@ bool firstFit(struct MemoryArray *memoryArray, int size, int pID)
     return false;
 }
 
+bool bestFit(struct MemoryArray *memoryArray, int size, int pID)
+{
+    return false;
+}
+
+bool worstFit(struct MemoryArray *memoryArray, int size, int pID)
+{
+    return false;
+}
+
 // Changes the ID = -1 for the cells with the given ID
 void freeCells(struct MemoryArray *memoryArray, int pID)
 {
