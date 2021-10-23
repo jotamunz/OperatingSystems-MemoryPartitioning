@@ -7,15 +7,22 @@
 #include <sys/shm.h>
 #include <stdbool.h>
 
-struct MemoryArray {
+struct MemoryArray
+{
     int size;
     // semaphore
     int array[];
 };
 
-struct MemoryArray* newLocalMemoryArray(int size);
-int newSharedMemoryArray(int size, char* keyFilePath);
+struct MemoryArray *newLocalMemoryArray(int size);
+int newSharedMemoryArray(int size, char *keyFilePath);
+
 bool firstFit(struct MemoryArray *memoryArray, int size, int pID);
+bool bestFit(struct MemoryArray *memoryArray, int size, int pID);
+bool worstFit(struct MemoryArray *memoryArray, int size, int pID);
+
 void freeCells(struct MemoryArray *memoryArray, int pID);
+
 void printMemoryArray(struct MemoryArray *memoryArray);
+
 #endif
