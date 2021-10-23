@@ -22,8 +22,8 @@ struct MemoryArray* newLocalMemoryArray(int size){
     return mArray;
 }
 
-// Inserts the given ID into the first block of cells >= size
-void firstFit(struct MemoryArray *memoryArray, int size, int pID){
+// Inserts the given ID into the first block of cells >= size and returns success status
+bool firstFit(struct MemoryArray *memoryArray, int size, int pID){
     for (int i = 0; i < memoryArray->size; i++){
         if (memoryArray->array[i] == -1){
             int freeSpace = 0;
@@ -33,13 +33,13 @@ void firstFit(struct MemoryArray *memoryArray, int size, int pID){
                     for (int x = 0; x < size; x++){
                         memoryArray->array[i+x] = pID;
                     }
-                    return;
+                    return true;
                 }
             }
             i += (freeSpace-1);
         }
     }
-    return;
+    return false;
 }
 
 // Changes the ID = -1 for the cells with the given ID
