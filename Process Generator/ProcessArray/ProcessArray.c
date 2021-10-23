@@ -21,10 +21,10 @@ void insertProcess(struct ProcessArray *processArray, struct Process *process){
     return;
 }
 
-// Changes the ID = -1 for the process with ID == key
-void deleteProcess(struct ProcessArray *processArray, int key){
+// Changes the ID = -1 for the process with the given ID
+void deleteProcess(struct ProcessArray *processArray, int pID){
     for (int i = 0; i < processArray->size; i++){
-        if (processArray->array[i].pID == key){
+        if (processArray->array[i].pID == pID){
             processArray->array[i].pID = -1;
             return;
         }

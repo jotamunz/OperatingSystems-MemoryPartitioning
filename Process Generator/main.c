@@ -7,6 +7,7 @@
 int main()
 {
 
+    /*
     struct ProcessArray *pArray = newLocalProcessArray(10);
     struct Process *p0 = newLocalProcess(0, 0);
     struct Process *p1 = newLocalProcess(1, 0);
@@ -20,4 +21,14 @@ int main()
     insertProcess(pArray, p3);
     insertProcess(pArray, p4);
     printProcessArray(pArray);
+    */
+
+    struct MemoryArray *mArray = newLocalMemoryArray(20);
+    firstFit(mArray, 2, 0);
+    firstFit(mArray, 4, 1);
+    freeCells(mArray, 0);
+    firstFit(mArray, 1, 2);
+    firstFit(mArray, 1, 3);
+    firstFit(mArray, 5, 4);
+    printMemoryArray(mArray);
 }

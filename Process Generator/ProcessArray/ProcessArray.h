@@ -6,7 +6,7 @@
 #include "../Process/Process.h"
 
 struct ProcessArray {
-    int size;\
+    int size;
     // semaphore
     struct Process array[];
 };
@@ -14,6 +14,6 @@ struct ProcessArray {
 struct ProcessArray* newLocalProcessArray(int size);
 int newSharedProcessArray(int size, char* keyFilePath);
 void insertProcess(struct ProcessArray *processArray, struct Process *process);
-void deleteProcess(struct ProcessArray *processArray, int key);
+void deleteProcess(struct ProcessArray *processArray, int pID);
 void printProcessArray(struct ProcessArray *processArray);
 #endif

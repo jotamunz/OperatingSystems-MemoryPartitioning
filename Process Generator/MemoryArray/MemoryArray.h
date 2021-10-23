@@ -8,10 +8,13 @@
 
 struct MemoryArray {
     int size;
-    int array[];
     // semaphore
+    int array[];
 };
 
 struct MemoryArray* newLocalMemoryArray(int size);
 int newSharedMemoryArray(int size, char* keyFilePath);
+void firstFit(struct MemoryArray *memoryArray, int size, int pID);
+void freeCells(struct MemoryArray *memoryArray, int pID);
+void printMemoryArray(struct MemoryArray *memoryArray);
 #endif
