@@ -5,6 +5,7 @@
 #include <sys/types.h>
 #include <sys/ipc.h>
 #include <sys/shm.h>
+#include <stdbool.h>
 
 struct MemoryArray {
     int size;
@@ -14,7 +15,7 @@ struct MemoryArray {
 
 struct MemoryArray* newLocalMemoryArray(int size);
 int newSharedMemoryArray(int size, char* keyFilePath);
-void firstFit(struct MemoryArray *memoryArray, int size, int pID);
+bool firstFit(struct MemoryArray *memoryArray, int size, int pID);
 void freeCells(struct MemoryArray *memoryArray, int pID);
 void printMemoryArray(struct MemoryArray *memoryArray);
 #endif
