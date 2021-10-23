@@ -11,14 +11,13 @@
 
 struct MemoryArray {
     int size;
-    int array[];
     // semaphore
+    int array[]; // This member of the struct must be the last one defined
 };
 
-struct MemoryArray* newLocalMemoryArray(int size);
-int newMemoryArray (int size, char* keyFilePath);
-int getMemoryArrayId (char* keyFilePath);
-struct MemoryArray* attachMemoryArray (char* keyFilePath);
-int dettachMemoryArray (struct MemoryArray* MemoryArrayp);
-int removeMemoryArray (int MemoryArrayId);
+int newSharedMemoryArray (int size, char* keyFilePath);
+int getSharedMemoryArrayId (char* keyFilePath);
+struct MemoryArray* attachSharedMemoryArray (char* keyFilePath);
+int detachSharedMemoryArray (struct MemoryArray* MemoryArrayp);
+int removeSharedMemoryArray (int MemoryArrayId);
 #endif

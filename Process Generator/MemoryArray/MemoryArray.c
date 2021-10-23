@@ -1,19 +1,6 @@
 #include "MemoryArray.h"
 
-int createSharedMemory (int size, char* keyFilePath){
-    int shmid;
-    key_t key; 
-    if ((key = ftok(keyFilePath, SHSEGMENTID)) < 0) {
-        printf ("\nError: No se ha logrado obtener la llave de la memoria compartida\n");
-        return -1;
-    }
-    if ((shmid = shmget(key, sizeof(struct MemoryArray) + size * sizeof(int), IPC_CREAT | 0666)) < 0) {
-        printf ("\nNo ha sido posible alocar la memoria compartida\n");
-        return -1;
-    }
-    return shmid;
-}
-
+/* Creates a new shared memory array of given size, and returns its Id */
 int newSharedMemoryArray (int size, char* keyFilePath){
     int shmid;
     key_t key; 
@@ -28,7 +15,8 @@ int newSharedMemoryArray (int size, char* keyFilePath){
     return shmid;
 }
 
-int getMemoryArrayId (char* keyFilePath) {
+/* Gets the Id of an already created shared memory array, given its key filepath */
+int getSharedMemoryArrayId (char* keyFilePath) {
     int shmid;
     key_t key; 
     if ((key = ftok(keyFilePath, SHSEGMENTID)) < 0) {
@@ -42,7 +30,8 @@ int getMemoryArrayId (char* keyFilePath) {
     return shmid;
 }
 
-struct MemoryArray* attachMemoryArray (char* keyFilePath) {
+/* Returns a pointer to an already created shared memory array, given its key filepath */
+struct MemoryArray* attachSharedMemoryArray (char* keyFilePath) {
     struct MemoryArray* MemoryArrayp;
     int shmid;
     if((shmid = getMemoryArrayId(keyFilePath) < 0)) {
@@ -55,7 +44,8 @@ struct MemoryArray* attachMemoryArray (char* keyFilePath) {
     return MemoryArrayp;
 }
 
-int dettachMemoryArray (struct MemoryArray* MemoryArrayp) {
+/* Detach a pointer to an already created shared memory array, given its key filepath */
+int detachSharedMemoryArray (struct MemoryArray* MemoryArrayp) {
     if (shmdt(MemoryArrayp) < 0){
         printf ("\nNo ha sido posible desadjuntar la memoria compartida\n");
         return -1;
@@ -63,7 +53,8 @@ int dettachMemoryArray (struct MemoryArray* MemoryArrayp) {
     return 1;
 }
 
-int removeMemoryArray (int MemoryArrayId) {
+/* Removes an already created shared memory array, given its Id*/
+int removeSharedMemoryArray (int MemoryArrayId) {
    if (shmctl(MemoryArrayId, IPC_RMID, 0) < 0) {
        printf ("\nNo ha sido posible remover la memoria compartida\n");
        return -1;
