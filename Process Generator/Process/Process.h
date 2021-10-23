@@ -19,6 +19,7 @@ struct Process {
 };
 
 struct Process *newLocalProcess(int pID, int algorithm);
+struct Process *newLocalDummyProcess();
 void runProcess();
-void printProcess(struct Process *process);
+void printProcess(struct Process process);
 #endif
