@@ -20,4 +20,15 @@ int getSharedMemoryArrayId (char* keyFilePath);
 struct MemoryArray* attachSharedMemoryArray (char* keyFilePath);
 int detachSharedMemoryArray (struct MemoryArray* MemoryArrayp);
 int removeSharedMemoryArray (int MemoryArrayId);
+
+struct MemoryArray *newLocalMemoryArray(int size);
+
+bool firstFit(struct MemoryArray *memoryArray, int size, int pID);
+bool bestFit(struct MemoryArray *memoryArray, int size, int pID);
+bool worstFit(struct MemoryArray *memoryArray, int size, int pID);
+
+void freeCells(struct MemoryArray *memoryArray, int pID);
+void insertProcessIntoMemory(struct MemoryArray *memoryArray, int pID, int size, int startIndex);
+
+void printMemoryArray(struct MemoryArray *memoryArray);
 #endif
