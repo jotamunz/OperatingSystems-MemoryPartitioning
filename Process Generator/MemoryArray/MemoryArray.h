@@ -23,6 +23,7 @@ bool bestFit(struct MemoryArray *memoryArray, int size, int pID);
 bool worstFit(struct MemoryArray *memoryArray, int size, int pID);
 
 void freeCells(struct MemoryArray *memoryArray, int pID);
+void insertProcessIntoMemory(struct MemoryArray *memoryArray, int pID, int size, int startIndex);
 
 void printMemoryArray(struct MemoryArray *memoryArray);
 

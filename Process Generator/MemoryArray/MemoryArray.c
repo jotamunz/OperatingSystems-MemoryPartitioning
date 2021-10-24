@@ -26,6 +26,15 @@ struct MemoryArray *newLocalMemoryArray(int size)
     return mArray;
 }
 
+// Inserts the pID into the memoryArray starting at startIndex
+void insertProcessIntoMemory(struct MemoryArray *memoryArray, int pID, int size, int startIndex)
+{
+    for (int i = 0; i < size; i++)
+    {
+        memoryArray->array[startIndex + i] = pID;
+    }
+}
+
 // Inserts the given ID into the first block of cells >= size and returns success status
 bool firstFit(struct MemoryArray *memoryArray, int size, int pID)
 {
@@ -39,10 +48,7 @@ bool firstFit(struct MemoryArray *memoryArray, int size, int pID)
                 freeSpace++;
                 if (size <= freeSpace)
                 {
-                    for (int x = 0; x < size; x++)
-                    {
-                        memoryArray->array[i + x] = pID;
-                    }
+                    insertProcessIntoMemory(memoryArray, pID, size, i);
                     return true;
                 }
             }
@@ -52,9 +58,38 @@ bool firstFit(struct MemoryArray *memoryArray, int size, int pID)
     return false;
 }
 
+// Inserts the given ID into the smallest posible block of cells
 bool bestFit(struct MemoryArray *memoryArray, int size, int pID)
 {
-    return false;
+    int bestFitIndex = -1;
+    int bestMemorySize = 0;
+
+    // Search for smallest posible memory space
+    for (int i = 0; i < memoryArray->size; i++)
+    {
+        if (memoryArray->array[i] == -1)
+        {
+            int currentBlockSize = 0;
+            // Calculate current block size
+            for (int j = i; j < memoryArray->size; j++)
+            {
+                if (memoryArray->array[j] != -1)
+                    break;
+                currentBlockSize++;
+            }
+            if (currentBlockSize >= size && (bestFitIndex == -1 || bestMemorySize > currentBlockSize))
+            {
+                bestFitIndex = i;
+                bestMemorySize = currentBlockSize;
+            }
+            i += currentBlockSize;
+        }
+    }
+    if (bestFitIndex == -1)
+        return false;
+
+    insertProcessIntoMemory(memoryArray, pID, size, bestFitIndex);
+    return true;
 }
 
 bool worstFit(struct MemoryArray *memoryArray, int size, int pID)
