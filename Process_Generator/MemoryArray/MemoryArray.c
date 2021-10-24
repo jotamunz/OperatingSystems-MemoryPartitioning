@@ -34,10 +34,10 @@ int getSharedMemoryArrayId (char* keyFilePath) {
 struct MemoryArray* attachSharedMemoryArray (char* keyFilePath) {
     struct MemoryArray* MemoryArrayp;
     int shmid;
-    if((shmid = getMemoryArrayId(keyFilePath) < 0)) {
+    if((shmid = getSharedMemoryArrayId(keyFilePath) < 0)) {
         return NULL;
     }
-    if ((MemoryArrayp = shmat(shmid, NULL, 0)) == (char *) -1) {
+    if ((MemoryArrayp = shmat(shmid, NULL, 0)) == (struct MemoryArray*) -1) {
         printf ("\nNo ha sido posible adjuntar la memoria compartida\n");
         return NULL;
     }
