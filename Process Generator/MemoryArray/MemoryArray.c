@@ -92,6 +92,7 @@ bool bestFit(struct MemoryArray *memoryArray, int size, int pID)
     return true;
 }
 
+// Inserts the given ID into the biggest posible block of cells
 bool worstFit(struct MemoryArray *memoryArray, int size, int pID)
 {
     int worstFitIndex = -1;
