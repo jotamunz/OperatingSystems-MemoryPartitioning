@@ -3,11 +3,12 @@
 #include <time.h>
 #include "../Process_Generator/ProcessArray/ProcessArray.h"
 #include "../Process_Generator/MemoryArray/MemoryArray.h"
+#include "Initiator/Initiator.h"
 
 int main(void){
    int shmid;
    int f1;
-   struct MemoryArray* memoryArrayp;
+   struct ProcessArray* processArrayp;
    char * keyFile = "../Shared key/SharedKey";
    int arraySize = 10;
    while (1){
@@ -17,7 +18,8 @@ int main(void){
       printf("4) Escribir a memoria compartida\n");
       printf("5) Desadjuntar memoria\n");
       printf("6) Remover memoria compartida\n");
-      printf("7) Cerrar el programa\n");
+      printf("7) Programa inicializador\n");
+      printf("8) Cerrar el programa\n");
       printf("Ingrese su opción: ");
       if (scanf("%d", &f1) != 1)
          break;
@@ -25,51 +27,51 @@ int main(void){
       switch (f1){
          case 1:
             printf("Creando memoria\n\n");
-            if((newSharedMemoryArray(arraySize, keyFile)) > -1){
+            if((newSharedProcessArray(arraySize, keyFile)) > -1){
                printf("Memoria creada\n\n");       
             }
             break;
          case 2:
             printf("Inicializar memoria\n\n");
-            shmid = getSharedMemoryArrayId(keyFile);
+            shmid = getSharedProcessArrayId(keyFile);
             if(shmid > -1){
                printf("Id de memoria obtenido\n\n");
-               memoryArrayp = attachSharedMemoryArray(shmid);
-               if(memoryArrayp != NULL){
+               processArrayp = attachSharedProcessArray(shmid);
+               if(processArrayp != NULL){
                   printf("Memoria adjuntada\n\n");
                }         
             }
             break;
          case 3:
             printf("Printeando memoria\n\n");
-            printMemoryArray(memoryArrayp);
+            printProcessArray(processArrayp);
             break;
          case 4:
             printf("Escribir a memoria\n\n");
             int f2;
             int f3;
-            int f4;
             printf("Que Id desea escribir en memoria: ");
             scanf("%d", &f2);
-            printf("Durante cuantas celdas: ");
+            printf("Con cuál algoritmo: ");
             scanf("%d", &f3);
-            printf("Posición de inicio: ");
-            scanf("%d", &f4);
-            insertProcessIntoMemory(memoryArrayp, f2, f3, f4);
+            insertProcess(processArrayp, newLocalProcess(f2, f3));
             break;
          case 5: 
             printf("Desadjuntando memoria\n\n");
-            if (detachSharedMemoryArray(memoryArrayp) > -1){
+            if (detachSharedProcessArray(processArrayp) > -1){
                   printf("Memoria desadjuntada\n\n");
             }
             break;
          case 6: 
             printf("Removiendo memoria\n\n");
-            if (removeSharedMemoryArray(shmid) > -1){
+            if (removeSharedProcessArray(shmid) > -1){
                   printf("Memoria removida\n\n");
             }
             break;
          case 7:
+            initializerMenu();
+            break;  
+         case 8:
             printf("Terminando programa\n\n");
             exit(0);
             break;  

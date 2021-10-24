@@ -97,6 +97,7 @@ void *runProcess(void *threadArgs){
 void printProcess(struct Process process){
     printf("ID: %d\n", process.pID);
     printf("Size: %d\n", process.size);
+    printf("Algorithm: %d\n", process.algorithm);
     printf("Duration: %d\n", process.duration);
     printf("Status: %d\n\n", process.status);
     return;

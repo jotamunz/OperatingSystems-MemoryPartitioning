@@ -5,7 +5,7 @@ int newSharedMemoryArray (int size, char* keyFilePath){
     int shmid;
     struct MemoryArray* memoryArrayp; 
     key_t key; 
-    if ((key = ftok(keyFilePath, SHSEGMENTID)) < 0) {
+    if ((key = ftok(keyFilePath, MEMARRAYSHAREDID)) < 0) {
         printf ("\nError: No se ha logrado obtener la llave de la memoria compartida\n");
         return -1;
     }
@@ -27,7 +27,7 @@ int newSharedMemoryArray (int size, char* keyFilePath){
 int getSharedMemoryArrayId (char* keyFilePath) {
     int shmid;
     key_t key; 
-    if ((key = ftok(keyFilePath, SHSEGMENTID)) < 0) {
+    if ((key = ftok(keyFilePath, MEMARRAYSHAREDID)) < 0) {
         printf ("\nError: No se ha logrado obtener la llave de la memoria compartida\n");
         return -1;
     }
