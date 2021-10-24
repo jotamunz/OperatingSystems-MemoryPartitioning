@@ -32,15 +32,15 @@ int main()
     bestFit(mArray, 3, 8);
     printMemoryArray(mArray);
     */
-    bestFit(mArray, 5, 1);
-    bestFit(mArray, 5, 2);
-    bestFit(mArray, 6, 3);
-    bestFit(mArray, 4, 4);
-    freeCells(mArray, 3);
+    worstFit(mArray, 5, 1);
+    worstFit(mArray, 5, 2);
+    worstFit(mArray, 6, 3);
+    worstFit(mArray, 4, 4);
+    freeCells(mArray, 4);
     freeCells(mArray, 1);
     // freeCells(mArray, 4);
     // freeCells(mArray, 3);
     // freeCells(mArray, 1);
-    bestFit(mArray, 6, 8);
+    worstFit(mArray, 3, 8);
     printMemoryArray(mArray);
 }

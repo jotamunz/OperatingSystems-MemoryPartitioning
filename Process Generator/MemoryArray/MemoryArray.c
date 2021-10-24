@@ -94,7 +94,34 @@ bool bestFit(struct MemoryArray *memoryArray, int size, int pID)
 
 bool worstFit(struct MemoryArray *memoryArray, int size, int pID)
 {
-    return false;
+    int worstFitIndex = -1;
+    int worstMemorySize = 0;
+    // Search the biggest possible memory space
+    for (int i = 0; i < memoryArray->size; i++)
+    {
+        if (memoryArray->array[i] == -1)
+        {
+            int currentBlockSize = 0;
+            // Calculate current block size
+            for (int j = i; j < memoryArray->size; j++)
+            {
+                if (memoryArray->array[j] != -1)
+                    break;
+                currentBlockSize++;
+            }
+            if (currentBlockSize >= size && (worstFitIndex == -1 || worstMemorySize < currentBlockSize))
+            {
+                worstFitIndex = i;
+                worstMemorySize = currentBlockSize;
+            }
+            i += currentBlockSize;
+        }
+    }
+    if (worstFitIndex == -1)
+        return false;
+
+    insertProcessIntoMemory(memoryArray, pID, size, worstFitIndex);
+    return true;
 }
 
 // Changes the ID = -1 for the cells with the given ID
