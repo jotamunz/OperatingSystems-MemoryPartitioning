@@ -2,6 +2,8 @@
 #define PROCESS_H
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+#include <unistd.h>
 
 struct Process {
     int pID;
@@ -18,7 +20,16 @@ struct Process {
     */
 };
 
-struct Process *newProcess(int, int);
-void runProcess();
-void printProcess(struct Process *);
+struct ThreadArgs {
+    struct Process *process;
+    struct ProcessArray *processArray;
+    struct MemoryArray *memoryArray;
+};
+
+struct Process *newLocalProcess(int pID, int algorithm);
+struct Process *newLocalDummyProcess();
+struct ThreadArgs *newLocalThreadArgs(struct Process *process, struct ProcessArray *processArray, struct MemoryArray *memoryArray);
+void createProcesses(int algorithm);
+void *runProcess();
+void printProcess(struct Process process);
 #endif
