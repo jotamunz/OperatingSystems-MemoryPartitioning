@@ -1,12 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "../Process_Generator/ProcessArray/ProcessArray.h"
-#include "../Process_Generator/MemoryArray/MemoryArray.h"
 #include "Initiator/Initiator.h"
 
 int main(void){
    int shmid;
+   int shmid2;
    int f1;
    struct ProcessArray* processArrayp;
    char * keyFile = "../Shared key/SharedKey";
@@ -17,9 +16,10 @@ int main(void){
       printf("3) Printear memoria compartida\n");
       printf("4) Escribir a memoria compartida\n");
       printf("5) Desadjuntar memoria\n");
-      printf("6) Remover memoria compartida\n");
-      printf("7) Programa inicializador\n");
-      printf("8) Cerrar el programa\n");
+      printf("6) Remover arreglo de memoria\n");
+      printf("7) Remover arreglo de procesos\n");
+      printf("8) Programa inicializador\n");
+      printf("9) Cerrar el programa\n");
       printf("Ingrese su opción: ");
       if (scanf("%d", &f1) != 1)
          break;
@@ -63,15 +63,21 @@ int main(void){
             }
             break;
          case 6: 
-            printf("Removiendo memoria\n\n");
-            if (removeSharedProcessArray(shmid) > -1){
+            printf("Removiendo arreglo de memoria\n\n");
+            if (removeSharedMemoryArray(shmid2) > -1){
                   printf("Memoria removida\n\n");
             }
             break;
-         case 7:
-            initializerMenu();
-            break;  
+         case 7: 
+            printf("Removiendo arreglo de procesos\n\n");
+            if (removeSharedProcessArray(shmid) > -1){
+                  printf("Memoria removida\n\n");
+            }
+            break;            
          case 8:
+            initializerMenu(&shmid2, &shmid);
+            break;  
+         case 9:
             printf("Terminando programa\n\n");
             exit(0);
             break;  

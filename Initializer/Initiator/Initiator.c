@@ -1,6 +1,6 @@
 #include "Initiator.h"
 
-void initializerMenu(){
+void initializerMenu(int *memArrayId, int *processArrayId){
     char s[100];
     char trashCollector[5];
     fgets(trashCollector, sizeof(trashCollector), stdin);
@@ -14,5 +14,11 @@ void initializerMenu(){
         fgets(s, sizeof(s), stdin);
         requestedCells = atoi(s);
     }
-    printf("%d amount of cells have been allocated\n", requestedCells); 
+    if (((*memArrayId) = newSharedMemoryArray(requestedCells, KEYFILEPATH)) > -1) {
+        printf("\n%d memory simulation cells have been allocated in shared memory with the Id %d\n", requestedCells, (*memArrayId));
+    } else {return;}
+    if (((*processArrayId) = newSharedProcessArray(PROCESSARRAYSIZE, KEYFILEPATH)) > -1) {
+        printf("The shared process array has also been allocated in shared memory with the Id %d\n", (*processArrayId));
+    } else {return;}
+    return;
 }
