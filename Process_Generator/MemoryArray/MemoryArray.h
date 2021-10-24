@@ -17,7 +17,7 @@ struct MemoryArray {
 
 int newSharedMemoryArray (int size, char* keyFilePath);
 int getSharedMemoryArrayId (char* keyFilePath);
-struct MemoryArray* attachSharedMemoryArray (char* keyFilePath);
+struct MemoryArray* attachSharedMemoryArray (int shmid);
 int detachSharedMemoryArray (struct MemoryArray* MemoryArrayp);
 int removeSharedMemoryArray (int MemoryArrayId);
 
