@@ -7,6 +7,7 @@
 #include <sys/ipc.h>
 #include <sys/shm.h>
 #include "../Process/Process.h"
+#define KEYFILEPATH "../Shared key/SharedKey"
 #define PROCESSARRAYSHAREDID 1
 
 struct ProcessArray {

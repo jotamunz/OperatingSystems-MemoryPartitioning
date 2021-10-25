@@ -5,7 +5,6 @@
 #include <string.h>
 #include "../../Process_Generator/ProcessArray/ProcessArray.h"
 #include "../../Process_Generator/MemoryArray/MemoryArray.h"
-#define KEYFILEPATH "../Shared key/SharedKey"
 #define PROCESSARRAYSIZE 50
 
 void initializerMenu(int *memArrayId, int *processArrayId);
