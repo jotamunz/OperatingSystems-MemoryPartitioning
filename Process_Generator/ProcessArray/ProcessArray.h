@@ -8,7 +8,7 @@
 struct ProcessArray {
     int size;
     // semaphore
-    struct Process array[];
+    struct Process array[]; // This member of the struct must be the last one defined
 };
 
 struct ProcessArray* newLocalProcessArray(int size);
