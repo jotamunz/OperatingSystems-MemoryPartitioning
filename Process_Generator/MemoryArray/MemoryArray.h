@@ -6,8 +6,9 @@
 #include <sys/types.h>
 #include <sys/ipc.h>
 #include <sys/shm.h>
-#define SHSEGMENTID 0
+#define MEMARRAYSHAREDID 0
 
+// Check if there are memory leaks: ipcs -m
 
 struct MemoryArray {
     int size;
