@@ -1,33 +1,4 @@
-#include "Process.h"
-
-// Constructor for a process with pID = -1
-struct Process *newLocalDummyProcess(){
-    struct Process *process = malloc(sizeof(struct Process));
-    process->pID = -1;
-    return process;
-}
-
-// Constructor for a process
-struct Process *newLocalProcess(int pID, int algorithm){
-    struct Process *process = malloc(sizeof(struct Process));
-    process->pID = pID;
-    process->algorithm = algorithm;
-    process->status = 0;
-    
-    // Random attributes
-    process->size = (rand() % (10 - 1 + 1)) + 1;
-    process->duration = (rand() % (60 - 20 + 1)) + 20;
-    return process;
-}
-
-// Bundles all necesary parameters for the run function
-struct ThreadArgs *newLocalThreadArgs(struct Process *process, struct ProcessArray *processArray, struct MemoryArray *memoryArray){
-    struct ThreadArgs *args = malloc(sizeof(struct ThreadArgs));
-    args->process = process;
-    args->processArray = processArray;
-    args->memoryArray = memoryArray;
-    return args;
-}
+#include "Generator.h"
 
 // Creates and starts process threads periodically
 void createProcesses(int algorithm){
@@ -38,13 +9,22 @@ void createProcesses(int algorithm){
     // Start the pID counter
     int pID = 0;
 
-    // TO DO: Obtain a pointer to both structres in shared memory
+    // Obtain a pointer to both structres in shared memory
+    int key = getSharedProcessArrayId(KEYFILEPATH);
+    struct ProcessArray *pArray = attachSharedProcessArray(key);
+    key = getSharedMemoryArrayId(KEYFILEPATH);
+    struct MemoryArray *mArray = attachSharedMemoryArray(key);
+
+    // Validate shared memory access
+    if (pArray == NULL || mArray == NULL)
+        return;
 
     while(1){
-        // Create a new local process
+        // Create a new local process and bundle params
         struct Process *process = newLocalProcess(pID, algorithm);
+        struct ThreadArgs *threadArgs = newLocalThreadArgs(process, pArray, mArray);
 
-        // TO DO: Create ThreadArgs struct and run thread
+        // TO DO: Create and run thread (pass threadArgs and runProcess())
 
         pID++;
         int n = (rand() % (60 - 30 + 1)) + 30;
@@ -92,12 +72,4 @@ void *runProcess(void *threadArgs){
     unlock process list semaphore
     unlock memory semaphore    
     */
-}
-
-void printProcess(struct Process process){
-    printf("ID: %d\n", process.pID);
-    printf("Size: %d\n", process.size);
-    printf("Duration: %d\n", process.duration);
-    printf("Status: %d\n\n", process.status);
-    return;
 }
