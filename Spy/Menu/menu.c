@@ -11,6 +11,14 @@ void generateHeader()
 
 void generateMenu(struct MemoryArray *memory, struct ProcessArray *processes)
 {
+    if (memory == NULL || processes == NULL) {
+        // Obtain a pointer to both structres in shared memory
+        int key = getSharedProcessArrayId(KEYFILEPATH);
+        processes = attachSharedProcessArray(key);
+        key = getSharedMemoryArrayId(KEYFILEPATH);
+        memory = attachSharedMemoryArray(key);
+    }
+
     int selection = 0;
     char trashCollector[10];
     generateHeader();

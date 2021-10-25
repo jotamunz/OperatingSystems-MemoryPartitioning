@@ -122,7 +122,7 @@ void printStateN(struct ProcessArray *processes, int state)
         if (state == processes->array[i].status)
         {
             printf("┃  Process ID:");
-            formatPID(processes->array[i].status);
+            formatPID(processes->array[i].pID);
             printf("┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫\n");
         }
     }
@@ -131,12 +131,12 @@ void printStateN(struct ProcessArray *processes, int state)
 void formatPID(int number)
 {
 
-    if (number < 10)
+    if (number < 10 && number >= 0)
     {
         printf(" 0%d                        ┃\n", number);
     }
     else
     {
-        printf("┃ %d                        ┃\n", number);
+        printf(" %d                        ┃\n", number);
     }
 }

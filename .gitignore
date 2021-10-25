@@ -1,6 +1,8 @@
 # VScode
 *.vscode/
 /Process*Generator/build/
+/Initializer/build/
+/Spy/build/
 
 # Prerequisites
 *.d
@@ -54,5 +56,3 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-
-Initializer/build/
