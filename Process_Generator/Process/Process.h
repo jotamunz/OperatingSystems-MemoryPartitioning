@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define LOGPATH ""
+#define LOGPATH "../Log/Log.txt"
 
 struct Process {
     int pID;
