@@ -1,6 +1,9 @@
 # VScode
 *.vscode/
-/Process*Generator/build/
+/Process_Generator/build/
+/Initializer/build/
+/Spy/build/
+/Finalizer/build/
 
 # Prerequisites
 *.d

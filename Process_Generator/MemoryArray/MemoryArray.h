@@ -6,18 +6,19 @@
 #include <sys/types.h>
 #include <sys/ipc.h>
 #include <sys/shm.h>
-#define SHSEGMENTID 0
+#define MEMARRAYSHAREDID 0
+#define SEMMEMORY "Gallote"
 
+// Check if there are memory leaks: ipcs -m
 
 struct MemoryArray {
     int size;
-    // semaphore
     int array[]; // This member of the struct must be the last one defined
 };
 
 int newSharedMemoryArray (int size, char* keyFilePath);
 int getSharedMemoryArrayId (char* keyFilePath);
-struct MemoryArray* attachSharedMemoryArray (char* keyFilePath);
+struct MemoryArray* attachSharedMemoryArray (int shmid);
 int detachSharedMemoryArray (struct MemoryArray* MemoryArrayp);
 int removeSharedMemoryArray (int MemoryArrayId);
 

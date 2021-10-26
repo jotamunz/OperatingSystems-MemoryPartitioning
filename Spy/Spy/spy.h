@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <semaphore.h> 
+#include <sys/types.h>
 #include "../../Process_Generator/MemoryArray/MemoryArray.h"
 #include "../../Process_Generator/ProcessArray/ProcessArray.h"
 

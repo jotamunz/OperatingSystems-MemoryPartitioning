@@ -2,8 +2,8 @@
 #define PROCESS_H
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
-#include <unistd.h>
+#include <string.h>
+#define LOGPATH "../Log/Log.txt"
 
 struct Process {
     int pID;
@@ -29,7 +29,5 @@ struct ThreadArgs {
 struct Process *newLocalProcess(int pID, int algorithm);
 struct Process *newLocalDummyProcess();
 struct ThreadArgs *newLocalThreadArgs(struct Process *process, struct ProcessArray *processArray, struct MemoryArray *memoryArray);
-void createProcesses(int algorithm);
-void *runProcess();
 void printProcess(struct Process process);
 #endif

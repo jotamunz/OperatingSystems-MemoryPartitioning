@@ -1,10 +1,11 @@
 #include "MemoryArray.h"
 
-/* Creates a new shared memory array of given size, and returns its Id */
+/// Creates a new shared memory array of given size, and returns its Id
 int newSharedMemoryArray (int size, char* keyFilePath){
     int shmid;
+    struct MemoryArray* memoryArrayp; 
     key_t key; 
-    if ((key = ftok(keyFilePath, SHSEGMENTID)) < 0) {
+    if ((key = ftok(keyFilePath, MEMARRAYSHAREDID)) < 0) {
         printf ("\nError: No se ha logrado obtener la llave de la memoria compartida\n");
         return -1;
     }
@@ -12,14 +13,21 @@ int newSharedMemoryArray (int size, char* keyFilePath){
         printf ("\nError: No ha sido posible reservar la memoria compartida\n");
         return -1;
     }
+    memoryArrayp = attachSharedMemoryArray(shmid);
+    for (int i = 0; i < size; i++)
+    {
+        memoryArrayp->array[i] = -1;
+    }
+    memoryArrayp->size = size;
+    detachSharedMemoryArray(memoryArrayp);
     return shmid;
 }
 
-/* Gets the Id of an already created shared memory array, given its key filepath */
+// Gets the Id of an already created shared memory array, given its key filepath
 int getSharedMemoryArrayId (char* keyFilePath) {
     int shmid;
     key_t key; 
-    if ((key = ftok(keyFilePath, SHSEGMENTID)) < 0) {
+    if ((key = ftok(keyFilePath, MEMARRAYSHAREDID)) < 0) {
         printf ("\nError: No se ha logrado obtener la llave de la memoria compartida\n");
         return -1;
     }
@@ -30,13 +38,9 @@ int getSharedMemoryArrayId (char* keyFilePath) {
     return shmid;
 }
 
-/* Returns a pointer to an already created shared memory array, given its key filepath */
-struct MemoryArray* attachSharedMemoryArray (char* keyFilePath) {
+// Returns a pointer to an already created shared memory array, given its key filepath
+struct MemoryArray* attachSharedMemoryArray (int shmid) {
     struct MemoryArray* MemoryArrayp;
-    int shmid;
-    if((shmid = getSharedMemoryArrayId(keyFilePath) < 0)) {
-        return NULL;
-    }
     if ((MemoryArrayp = shmat(shmid, NULL, 0)) == (struct MemoryArray*) -1) {
         printf ("\nNo ha sido posible adjuntar la memoria compartida\n");
         return NULL;
@@ -44,16 +48,16 @@ struct MemoryArray* attachSharedMemoryArray (char* keyFilePath) {
     return MemoryArrayp;
 }
 
-/* Detach a pointer to an already created shared memory array, given its key filepath */
+// Detach a pointer to an already created shared memory array, given its key filepath
 int detachSharedMemoryArray (struct MemoryArray* MemoryArrayp) {
-    if (shmdt(MemoryArrayp) < 0){
+    if (shmdt(MemoryArrayp) != 0){
         printf ("\nNo ha sido posible desadjuntar la memoria compartida\n");
         return -1;
     }
     return 1;
 }
 
-/* Removes an already created shared memory array, given its Id*/
+// Removes an already created shared memory array, given its Id
 int removeSharedMemoryArray (int MemoryArrayId) {
    if (shmctl(MemoryArrayId, IPC_RMID, 0) < 0) {
        printf ("\nNo ha sido posible remover la memoria compartida\n");
@@ -187,11 +191,10 @@ void freeCells(struct MemoryArray *memoryArray, int pID)
 }
 
 // Prints the memory array
-void printMemoryArray(struct MemoryArray *memoryArray)
-{
-    for (int i = 0; i < memoryArray->size; i++)
-    {
-        printf("%d\n", memoryArray->array[i]);
+void printMemoryArray(struct MemoryArray *memoryArray){
+    printf("MEMORY\n");
+    for (int i = 0; i < memoryArray->size; i++){
+        printf("ID: %d\n", memoryArray->array[i]);
     }
     printf("\n");
     return;

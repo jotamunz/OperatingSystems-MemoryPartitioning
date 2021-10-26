@@ -2,6 +2,11 @@
 
 void printMemoryCells(struct MemoryArray *memory, int cellsXline)
 {
+    // Obtain memory sempahore
+    sem_t *memorySem = sem_open(SEMMEMORY, 0, 0644, 0);
+    // Lock
+    sem_wait(memorySem);
+
     int lineSize = cellsXline;
     int remaining = memory->size;
     int remXline = 0;
@@ -10,7 +15,6 @@ void printMemoryCells(struct MemoryArray *memory, int cellsXline)
 
     while (remaining != 0)
     {
-
         if (remaining > lineSize)
         {
             remXline = lineSize;
@@ -23,6 +27,9 @@ void printMemoryCells(struct MemoryArray *memory, int cellsXline)
         index = printCellLine(memory, remXline, index);
         remaining = remaining - remXline;
     }
+
+    // Unlock
+    sem_post(memorySem);
 }
 
 int printCellLine(struct MemoryArray *memory, int elements, int index)
@@ -75,6 +82,11 @@ void formatNumber(int number)
 
 void printProcesses(struct ProcessArray *processes)
 {
+    // Obtain process list semaphore
+    sem_t *processSem = sem_open(SEMPROCESS, 0, 0644, 0);
+    // Lock
+    sem_wait(processSem);
+
     printf("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n");
     printf("┃      PROCESSES ACCESSING MEMORY        ┃\n");
     printf("┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫\n");
@@ -112,6 +124,9 @@ void printProcesses(struct ProcessArray *processes)
     printf("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n");
 
     printf("\n\n");
+
+    // Unlock
+    sem_post(processSem);
 }
 
 void printStateN(struct ProcessArray *processes, int state)
@@ -122,7 +137,7 @@ void printStateN(struct ProcessArray *processes, int state)
         if (state == processes->array[i].status)
         {
             printf("┃  Process ID:");
-            formatPID(processes->array[i].status);
+            formatPID(processes->array[i].pID);
             printf("┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫\n");
         }
     }
@@ -130,13 +145,12 @@ void printStateN(struct ProcessArray *processes, int state)
 
 void formatPID(int number)
 {
-
-    if (number < 10)
+    if (number < 10 && number >= 0)
     {
         printf(" 0%d                        ┃\n", number);
     }
     else
     {
-        printf("┃ %d                        ┃\n", number);
+        printf(" %d                        ┃\n", number);
     }
 }
