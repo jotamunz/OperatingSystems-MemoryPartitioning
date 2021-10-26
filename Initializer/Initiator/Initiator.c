@@ -20,5 +20,21 @@ void initializerMenu(int *memArrayId, int *processArrayId){
     if (((*processArrayId) = newSharedProcessArray(PROCESSARRAYSIZE, KEYFILEPATH)) > -1) {
         printf("The shared process array has also been allocated in shared memory with the Id %d\n", (*processArrayId));
     } else {return;}
+    if (openSemaphore(SEMMEMORY, 1) > -1) {
+        printf("The memory sempahore has been created\n");
+    } else {return;}
+    if (openSemaphore(SEMPROCESS, 1) > -1) {
+        printf("The process list sempahore has been created\n");
+    } else {return;}
     return;
+}
+
+int openSemaphore(const char *name, int count){
+    sem_t *sem;
+    if ((sem = sem_open(name, O_CREAT | O_EXCL, 0644, count)) < 0){
+        printf("Could not open %s semaphore", name);
+        return -1;
+    }
+    sem_close(sem);
+    return 0;
 }

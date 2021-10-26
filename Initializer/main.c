@@ -18,8 +18,9 @@ int main(void){
       printf("5) Desadjuntar memoria\n");
       printf("6) Remover arreglo de memoria\n");
       printf("7) Remover arreglo de procesos\n");
-      printf("8) Programa inicializador\n");
-      printf("9) Cerrar el programa\n");
+      printf("8) Remover semaforos\n");
+      printf("9) Programa inicializador\n");
+      printf("0) Cerrar el programa\n");
       printf("Ingrese su opción: ");
       if (scanf("%d", &f1) != 1)
          break;
@@ -73,11 +74,17 @@ int main(void){
             if (removeSharedProcessArray(shmid) > -1){
                   printf("Memoria removida\n\n");
             }
-            break;            
-         case 8:
+            break;  
+         case 8: 
+            printf("Removiendo semaforos\n\n");
+            if (sem_unlink(SEMMEMORY) > -1 && sem_unlink(SEMPROCESS) > -1){
+                  printf("Semaforos removidos\n\n");
+            }
+            break;       
+         case 9:
             initializerMenu(&shmid2, &shmid);
             break;  
-         case 9:
+         case 0:
             printf("Terminando programa\n\n");
             exit(0);
             break;  

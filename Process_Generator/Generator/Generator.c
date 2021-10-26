@@ -8,6 +8,7 @@ void createProcesses(int algorithm){
 
     // Start the pID counter
     int pID = 0;
+    int n;
 
     // Obtain a pointer to both structres in shared memory
     int key = getSharedProcessArrayId(KEYFILEPATH);
@@ -23,11 +24,16 @@ void createProcesses(int algorithm){
         // Create a new local process and bundle params
         struct Process *process = newLocalProcess(pID, algorithm);
         struct ThreadArgs *threadArgs = newLocalThreadArgs(process, pArray, mArray);
+        pthread_t threadProcess;
 
-        // TO DO: Create and run thread (pass threadArgs and runProcess())
+        // Create and join the thread
+        if (pthread_create(&threadProcess, NULL, runProcess, threadArgs) != 0)
+            perror("FAILED CREATE\n");
+        if (pthread_join(threadProcess, NULL) != 0)
+            perror("FAILED JOIN\n");
 
         pID++;
-        int n = (rand() % (60 - 30 + 1)) + 30;
+        n = (rand() % (60 - 30 + 1)) + 30;
         sleep(n);
     }
 }
@@ -37,6 +43,8 @@ void *runProcess(void *threadArgs){
     struct Process *process = ((struct ThreadArgs *)threadArgs)->process;
     struct ProcessArray *pArray = ((struct ThreadArgs *)threadArgs)->processArray;
     struct MemoryArray *mArray = ((struct ThreadArgs *)threadArgs)->memoryArray;
+
+    printProcess(*process);
 
     /* TO DO:
     lock process list semaphore
