@@ -20,6 +20,9 @@ void createProcesses(int algorithm){
     if (pArray == NULL || mArray == NULL)
         return;
 
+    // Add id for finalizer
+    pArray->programIds[1] = getpid();
+
     while(1){
         // Create a new local process and bundle params
         struct Process *process = newLocalProcess(pID, algorithm);
