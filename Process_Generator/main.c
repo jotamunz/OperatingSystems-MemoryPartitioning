@@ -8,4 +8,5 @@ int main()
     // TO DO: add menu to solicit algorithm from user
 
     /* TESTS */
+    createProcesses(0);
 }
