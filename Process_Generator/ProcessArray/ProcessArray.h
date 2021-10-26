@@ -6,13 +6,15 @@
 #include <sys/types.h>
 #include <sys/ipc.h>
 #include <sys/shm.h>
+#include <unistd.h>
 #include "../Process/Process.h"
 #define KEYFILEPATH "../Shared key/SharedKey"
 #define PROCESSARRAYSHAREDID 1
+#define SEMPROCESS "Gallito"
 
 struct ProcessArray {
     int size;
-    // semaphore
+    pid_t programIds [3]; // Id for Initializer, Process_Generator, Spy
     struct Process array[]; // This member of the struct must be the last one defined
 };
 

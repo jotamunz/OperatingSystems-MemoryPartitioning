@@ -17,6 +17,13 @@ void generateMenu(struct MemoryArray *memory, struct ProcessArray *processes)
         processes = attachSharedProcessArray(key);
         key = getSharedMemoryArrayId(KEYFILEPATH);
         memory = attachSharedMemoryArray(key);
+
+        // Validate shared memory access
+        if (memory == NULL || processes == NULL)
+            return;
+
+        // Add id for finalizer
+        processes->programIds[2] = getpid();
     }
 
     int selection = 0;

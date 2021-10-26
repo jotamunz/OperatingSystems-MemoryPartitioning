@@ -20,6 +20,7 @@ int newSharedProcessArray (int size, char* keyFilePath){
         processArrayp->array[i].pID = -1;
     }
     processArrayp->size = size;
+    processArrayp->programIds[0] = getpid();
     detachSharedProcessArray(processArrayp);
     return shmid;
 }

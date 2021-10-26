@@ -19,7 +19,6 @@ int newSharedMemoryArray (int size, char* keyFilePath){
         memoryArrayp->array[i] = -1;
     }
     memoryArrayp->size = size;
-    memoryArrayp->programsId[0] = getpid();
     detachSharedMemoryArray(memoryArrayp);
     return shmid;
 }

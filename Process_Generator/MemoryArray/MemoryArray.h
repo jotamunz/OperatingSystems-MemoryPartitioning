@@ -6,15 +6,13 @@
 #include <sys/types.h>
 #include <sys/ipc.h>
 #include <sys/shm.h>
-#include <unistd.h>
 #define MEMARRAYSHAREDID 0
+#define SEMMEMORY "Gallote"
 
 // Check if there are memory leaks: ipcs -m
 
 struct MemoryArray {
     int size;
-    pid_t programsId [3];
-    // semaphore
     int array[]; // This member of the struct must be the last one defined
 };
 
