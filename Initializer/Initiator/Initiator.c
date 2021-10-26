@@ -5,7 +5,10 @@ void initializerMenu(int *memArrayId, int *processArrayId){
     char trashCollector[5];
     fgets(trashCollector, sizeof(trashCollector), stdin);
     int requestedCells;
-    printf("Welcome to the initializer program\n");
+    printf("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n");
+    printf("┃                        INITIALIZER PROGRAM                     ┃\n");
+    printf("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n");
+    printf("\n\n");
     printf("Please input the amount of cells to request for the simulation: ");
     fgets(s, sizeof(s), stdin);
     requestedCells = atoi(s);

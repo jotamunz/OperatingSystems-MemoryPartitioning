@@ -3,6 +3,7 @@
 /Process_Generator/build/
 /Initializer/build/
 /Spy/build/
+/Finalizer/build/
 
 # Prerequisites
 *.d
