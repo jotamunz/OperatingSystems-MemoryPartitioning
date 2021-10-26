@@ -27,5 +27,6 @@ int removeSharedProcessArray (int MemoryArrayId);
 struct ProcessArray* newLocalProcessArray(int size);
 void insertProcess(struct ProcessArray *processArray, struct Process *process);
 void deleteProcess(struct ProcessArray *processArray, int pID);
+void updateProcessStatus(struct ProcessArray *processArray, int pID, int status);
 void printProcessArray(struct ProcessArray *processArray);
 #endif

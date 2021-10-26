@@ -9,7 +9,7 @@
 #include<time.h>
 #include "../../Process_Generator/ProcessArray/ProcessArray.h"
 #include "../../Process_Generator/MemoryArray/MemoryArray.h"
-#define PROCESSARRAYSIZE 50
+#define PROCESSARRAYSIZE 3
 
 void initializerMenu(int *memArrayId, int *processArrayId);
 int openSemaphore(const char *name, int count);

@@ -23,20 +23,25 @@ void createProcesses(int algorithm){
     // Add id for finalizer
     pArray->programIds[1] = getpid();
 
-    while(1){
+    while(true){
+        // TEMP
+        if (pID >= 3)
+            continue;
+
         // Create a new local process and bundle params
         struct Process *process = newLocalProcess(pID, algorithm);
         struct ThreadArgs *threadArgs = newLocalThreadArgs(process, pArray, mArray);
         pthread_t threadProcess;
 
-        // Create and join the thread
+        // Create and run the thread
         if (pthread_create(&threadProcess, NULL, runProcess, threadArgs) != 0)
-            perror("FAILED CREATE\n");
-        if (pthread_join(threadProcess, NULL) != 0)
-            perror("FAILED JOIN\n");
+            perror("Failed to create thread\n");
 
         pID++;
-        n = (rand() % (60 - 30 + 1)) + 30;
+
+        // TEMP
+        //n = (rand() % (60 - 30 + 1)) + 30;
+        n = 15;
         sleep(n);
     }
 }
@@ -53,39 +58,78 @@ void *runProcess(void *threadArgs){
     sem_t *processSem = sem_open(SEMPROCESS, 0, 0644, 0);
     sem_t *memorySem = sem_open(SEMMEMORY, 0, 0644, 0);
 
+    // Lock process list and insert the process into it
     sem_wait(processSem);
     insertProcess(pArray, process);
     // TO DO: update logs
     sem_post(processSem);
 
-    /* TO DO:
+    // Lock memory and insert into it
+    sem_wait(memorySem);
 
-    lock memory semaphore
-    lock process list semaphore
-    update staus = 1 and update logs
-    unlock process list semaphore
-    run algorithm
-    lock process list semaphore
-    if success: update status = 2 and update logs
-    if fail: exit process list and update logs
-    unlock process list semaphore
-    unlock memory semaphore
+    // Lock process list and update status
+    sem_wait(processSem);
+    process->status = 1;
+    updateProcessStatus(pArray, process->pID, 1);
+    // TO DO: update logs
+    sem_post(processSem);
 
-    sleep
+    // Run search and fit algorithm
+    bool success = false;
+    if (process->algorithm == 0)
+        success = firstFit(mArray, process->size, process->pID);
+    else if (process->algorithm == 1)
+        success = bestFit(mArray, process->size, process->pID);
+    else if (process->algorithm == 2)
+        success = worstFit(mArray, process->size, process->pID);
 
-    lock process list semaphore
-    update status = 3 and update logs
-    unlock process list semaphore
+    // Lock process list
+    sem_wait(processSem);
+    if (success){
+        // Update status
+        process->status = 2;
+        updateProcessStatus(pArray, process->pID, 2);
+        // TO DO: update logs
+    } else {
+        // Exit the process list
+        deleteProcess(pArray, process->pID);
+        // TO DO: update logs
+        // Kill thread
+        sem_post(processSem);
+        sem_post(memorySem);
+        return NULL;
+    }
+    sem_post(processSem);
+    sem_post(memorySem);
 
-    lock memory semaphore
-    lock process list semaphore
-    update staus = 4 and update logs
-    unlock process list semaphore
-    free memory
-    lock process list semaphore
-    exit process list
-    update logs
-    unlock process list semaphore
-    unlock memory semaphore    
-    */
+    // Run the process
+    sleep(process->duration);
+
+    // Lock process list and update status
+    sem_wait(processSem);
+    process->status = 3;
+    updateProcessStatus(pArray, process->pID, 3);
+    // TO DO: update logs
+    sem_post(processSem);
+
+    // Lock memory and exit it
+    sem_wait(memorySem);
+
+    // Lock process list and update status
+    sem_wait(processSem);
+    process->status = 4;
+    updateProcessStatus(pArray, process->pID, 4);
+    // TO DO: update logs
+    sem_post(processSem);
+
+    // Free memory cells
+    freeCells(mArray, process->pID);
+
+    // Lock process list and exit it
+    sem_wait(processSem);
+    deleteProcess(pArray, process->pID);
+    // TO DO: update logs
+    sem_post(processSem);
+    sem_post(memorySem);
+    return NULL;
 }
