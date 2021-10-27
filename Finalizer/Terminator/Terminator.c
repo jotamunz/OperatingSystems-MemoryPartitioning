@@ -22,7 +22,7 @@ void terminatorMenu(){
         removedSharedMemory();
     }
     if (sem_unlink(SEMMEMORY) > -1 && sem_unlink(SEMPROCESS) > -1){
-        printf("\n• The created semaphores have been unlinked\n\n");
+        printf("\n• The created semaphores have been unlinked\n");
     }
     printf("\nTerminating program...\n\n");
     return;
@@ -38,10 +38,10 @@ void removedSharedMemory() {
         return;
     }
     if (removeSharedMemoryArray(memoryArrayKey) > -1){
-        printf("\n• The allocated shared memory array has been marked for removal\n");
+        printf("\n• The allocated shared memory simulation has been marked for removal\n");
     }
     if (removeSharedProcessArray(processArrayKey) > -1){
-        printf("\n• The allocated shared process queue has been marked for removal\n");
+        printf("\n• The allocated shared process list has been marked for removal\n");
     }
     return;
 }

@@ -9,24 +9,8 @@ void generateHeader()
     printf("\n\n");
 }
 
-void generateMenu(struct MemoryArray *memory, struct ProcessArray *processes)
+void generateMenu()
 {
-    if (memory == NULL || processes == NULL)
-    {
-        // Obtain a pointer to both structres in shared memory
-        int key = getSharedProcessArrayId(KEYFILEPATH);
-        processes = attachSharedProcessArray(key);
-        key = getSharedMemoryArrayId(KEYFILEPATH);
-        memory = attachSharedMemoryArray(key);
-
-        // Validate shared memory access
-        if (memory == NULL || processes == NULL)
-            return;
-
-        // Add id for finalizer
-        processes->programIds[2] = getpid();
-    }
-
     int selection = 0;
     char trashCollector[10];
     generateHeader();
@@ -40,20 +24,22 @@ void generateMenu(struct MemoryArray *memory, struct ProcessArray *processes)
     switch (selection)
     {
     case 1:
-        printf("First Fit");
+        printf("\n");
+        createProcesses(0);
         break;
 
     case 2:
-        printf("Best Fit");
+        printf("\n");
+        createProcesses(1);
         break;
 
     case 3:
-        printf("Worst Fit");
-
+        printf("\n");
+        createProcesses(2);
         break;
 
     case 4:
-        printf("Terminating program...\n");
+        printf("\nTerminating program...\n\n");
         break;
 
     default:
@@ -66,6 +52,6 @@ void generateMenu(struct MemoryArray *memory, struct ProcessArray *processes)
             enter = getchar();
         }
         system("clear");
-        generateMenu(memory, processes);
+        generateMenu();
     }
 }

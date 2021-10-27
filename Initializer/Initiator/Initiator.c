@@ -11,7 +11,7 @@ void initializerMenu()
     printf("┃                        INITIALIZER PROGRAM                     ┃\n");
     printf("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n");
     printf("\n\n");
-    printf("Please input the amount of cells to request for the simulation: ");
+    printf("Please input the amount of memory cells to request for the simulation: ");
     fgets(s, sizeof(s), stdin);
     requestedCells = atoi(s);
     while (requestedCells < 1)
@@ -30,7 +30,7 @@ void initializerMenu()
     }
     if ((processArrayId = newSharedProcessArray(PROCESSARRAYSIZE, KEYFILEPATH)) > -1)
     {
-        printf("• The shared process array has also been allocated in shared memory with the Id %d\n\n", processArrayId);
+        printf("• %d process list indexes have been allocated in shared memory with the Id %d\n\n", PROCESSARRAYSIZE, processArrayId);
     }
     else
     {
@@ -38,7 +38,7 @@ void initializerMenu()
     }
     if (openSemaphore(SEMMEMORY, 1) > -1)
     {
-        printf("• The memory array sempahore has been created\n\n");
+        printf("• The memory simulation sempahore has been created\n\n");
     }
     else
     {

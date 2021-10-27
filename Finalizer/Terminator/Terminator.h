@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <signal.h>
+#include <semaphore.h>
 #include "../../Process_Generator/ProcessArray/ProcessArray.h"
 #include "../../Process_Generator/MemoryArray/MemoryArray.h"
 
