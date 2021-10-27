@@ -3,6 +3,7 @@
 
 /* Creates a new shared process array of given size, and returns its Id */
 int newSharedProcessArray (int size, char* keyFilePath){
+    int i;
     int shmid;
     struct ProcessArray* processArrayp; 
     key_t key; 
@@ -21,6 +22,10 @@ int newSharedProcessArray (int size, char* keyFilePath){
     }
     processArrayp->size = size;
     processArrayp->programIds[0] = getpid();
+    for(i = 1; i < size; i++)
+    {
+        processArrayp->programIds[i] = 0;
+    }
     detachSharedProcessArray(processArrayp);
     return shmid;
 }

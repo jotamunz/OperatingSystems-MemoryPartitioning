@@ -12,6 +12,6 @@
 #include "../../Spy/Logger/logger.h"
 #define PROCESSARRAYSIZE 3
 
-void initializerMenu(int *memArrayId, int *processArrayId);
+void initializerMenu();
 int openSemaphore(const char *name, int count);
 #endif

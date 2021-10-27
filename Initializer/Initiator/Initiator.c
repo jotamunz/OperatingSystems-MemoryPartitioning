@@ -1,11 +1,11 @@
 #include "Initiator.h"
 
-void initializerMenu(int *memArrayId, int *processArrayId)
+void initializerMenu()
 {
+    int memArrayId;
+    int processArrayId;
     system("clear");
     char s[100];
-    char trashCollector[5];
-    fgets(trashCollector, sizeof(trashCollector), stdin);
     int requestedCells;
     printf("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n");
     printf("┃                        INITIALIZER PROGRAM                     ┃\n");
@@ -20,17 +20,17 @@ void initializerMenu(int *memArrayId, int *processArrayId)
         fgets(s, sizeof(s), stdin);
         requestedCells = atoi(s);
     }
-    if (((*memArrayId) = newSharedMemoryArray(requestedCells, KEYFILEPATH)) > -1)
+    if ((memArrayId = newSharedMemoryArray(requestedCells, KEYFILEPATH)) > -1)
     {
-        printf("\n• %d memory simulation cells have been allocated in shared memory with the Id %d\n", requestedCells, (*memArrayId));
+        printf("\n• %d memory simulation cells have been allocated in shared memory with the Id %d\n\n", requestedCells, memArrayId);
     }
     else
     {
         return;
     }
-    if (((*processArrayId) = newSharedProcessArray(PROCESSARRAYSIZE, KEYFILEPATH)) > -1)
+    if ((processArrayId = newSharedProcessArray(PROCESSARRAYSIZE, KEYFILEPATH)) > -1)
     {
-        printf("• The shared process array has also been allocated in shared memory with the Id %d\n", (*processArrayId));
+        printf("• The shared process array has also been allocated in shared memory with the Id %d\n\n", processArrayId);
     }
     else
     {
@@ -38,7 +38,7 @@ void initializerMenu(int *memArrayId, int *processArrayId)
     }
     if (openSemaphore(SEMMEMORY, 1) > -1)
     {
-        printf("• The memory array sempahore has been created\n");
+        printf("• The memory array sempahore has been created\n\n");
     }
     else
     {
@@ -46,7 +46,7 @@ void initializerMenu(int *memArrayId, int *processArrayId)
     }
     if (openSemaphore(SEMPROCESS, 1) > -1)
     {
-        printf("• The process list sempahore has been created\n");
+        printf("• The process list sempahore has been created\n\n");
     }
     else
     {

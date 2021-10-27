@@ -4,6 +4,8 @@
 #include "Initiator/Initiator.h"
 
 int main(void){
+   initializerMenu();
+   /*
    int shmid;
    int shmid2;
    int f1;
@@ -94,4 +96,5 @@ int main(void){
       }
    }
    return 0;
+   */
 }
