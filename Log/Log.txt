@@ -1,3 +1,28 @@
-Dynamic memory allocation simulation log
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                 DYNAMIC MEMORY ALLOCATION LOG                  ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 
-This log file was created alongside the shared memory on: Oct 26, 2021; 15:55:12
+Log entries: 
+
+The log file was created at: Oct 26, 2021; 18:59:25
+
+Shared memory initialized with 30 memory cells at: Oct 26, 2021; 18:59:25
+
+
+The process 0 is waiting for the semaphore in order to be located in memory Oct 26, 2021; 18:59:34
+
+
+The process 0 is being located in memory ( 7 cells occupied ) Oct 26, 2021; 18:59:34
+
+
+The process 0 is executing in memory Oct 26, 2021; 18:59:34
+
+
+The process 1 is waiting for the semaphore in order to be located in memory Oct 26, 2021; 18:59:49
+
+
+The process 1 is being located in memory ( 3 cells occupied ) Oct 26, 2021; 18:59:49
+
+
+The process 1 is executing in memory Oct 26, 2021; 18:59:49
+
