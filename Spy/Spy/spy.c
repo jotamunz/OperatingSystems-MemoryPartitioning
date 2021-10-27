@@ -131,10 +131,9 @@ void printProcesses(struct ProcessArray *processes)
 
 void printStateN(struct ProcessArray *processes, int state)
 {
-    int id = -1;
     for (int i = 0; i < processes->size; i++)
     {
-        if (state == processes->array[i].status)
+        if (processes->array[i].pID != -1 && state == processes->array[i].status)
         {
             printf("┃  Process ID:");
             formatPID(processes->array[i].pID);

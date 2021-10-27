@@ -4,61 +4,7 @@
 
 Log entries: 
 
-The log file was created at: Oct 27, 2021; 11:19:25
+The log file was created at: Oct 27, 2021; 11:39:53
 
-Shared memory initialized with 30 memory cells at: Oct 27, 2021; 11:19:25
-
-
-The process 0 is waiting for the semaphore in order to be located in memory Oct 27, 2021; 11:19:49
-
-
-The process 0 is being located in memory ( 9 cells occupied ) Oct 27, 2021; 11:19:49
-
-
-The process 0 is executing in memory Oct 27, 2021; 11:19:49
-
-
-The process 1 is waiting for the semaphore in order to be located in memory Oct 27, 2021; 11:20:04
-
-
-The process 1 is being located in memory ( 1 cells occupied ) Oct 27, 2021; 11:20:04
-
-
-The process 1 is executing in memory Oct 27, 2021; 11:20:04
-
-
-The process 2 is waiting for the semaphore in order to be located in memory Oct 27, 2021; 11:20:19
-
-
-The process 2 is being located in memory ( 10 cells occupied ) Oct 27, 2021; 11:20:19
-
-
-The process 2 is executing in memory Oct 27, 2021; 11:20:19
-
-
-The process 0 is waiting for the semaphore in order to free memory Oct 27, 2021; 11:20:42
-
-
-The process 0 is freeing memory ( 9 cells freed ) Oct 27, 2021; 11:20:42
-
-
-The process 0 has freed memory ( 9 cells freed ) Oct 27, 2021; 11:20:42
-
-
-The process 1 is waiting for the semaphore in order to free memory Oct 27, 2021; 11:20:50
-
-
-The process 1 is freeing memory ( 1 cells freed ) Oct 27, 2021; 11:20:50
-
-
-The process 1 has freed memory ( 1 cells freed ) Oct 27, 2021; 11:20:50
-
-
-The process 2 is waiting for the semaphore in order to free memory Oct 27, 2021; 11:20:56
-
-
-The process 2 is freeing memory ( 10 cells freed ) Oct 27, 2021; 11:20:56
-
-
-The process 2 has freed memory ( 10 cells freed ) Oct 27, 2021; 11:20:56
+Shared memory initialized with 30 memory cells at: Oct 27, 2021; 11:39:53
 
