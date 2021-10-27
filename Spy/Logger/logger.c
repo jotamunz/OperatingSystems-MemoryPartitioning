@@ -8,7 +8,7 @@ int createLog(int memSize)
         printf("The simulation log couldn't be created\n");
         return -1;
     }
-    char destination[120] = "Log entries: \n\nThe log file was created at: ";
+    char destination[120] = "Created on: ";
     ;
     char source[21];
     char memory[20];

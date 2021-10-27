@@ -2,9 +2,7 @@
 ┃                 DYNAMIC MEMORY ALLOCATION LOG                  ┃
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 
-Log entries: 
+Created on: Oct 27, 2021; 11:50:03
 
-The log file was created at: Oct 27, 2021; 11:39:53
-
-Shared memory initialized with 30 memory cells at: Oct 27, 2021; 11:39:53
+Shared memory initialized with 30 memory cells at: Oct 27, 2021; 11:50:03
 
