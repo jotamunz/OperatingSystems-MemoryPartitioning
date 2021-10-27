@@ -32,7 +32,7 @@ int getSharedMemoryArrayId (char* keyFilePath) {
         return -1;
     }
     if ((shmid = shmget(key, 0, 0666)) < 0) {
-        printf ("\nNo ha sido posible obtener el Id de la memoria compartida\n");
+        printf ("\nId of shared memory block couldn't be found\n");
         return -1;
     }
     return shmid;
