@@ -2,7 +2,42 @@
 ┃                 DYNAMIC MEMORY ALLOCATION LOG                  ┃
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 
-Created on: Oct 27, 2021; 11:50:03
+Created on: Oct 27, 2021; 13:00:34
 
-Shared memory initialized with 30 memory cells at: Oct 27, 2021; 11:50:03
+[Oct 27, 2021; 13:00:34] Shared memory initialized with 30 memory cells
 
+[Oct 27, 2021; 13:00:47] The process 0 is waiting for the semaphore in order to be located in memory
+
+[Oct 27, 2021; 13:00:47] The process 0 is being located in memory (7 cells required)
+
+[Oct 27, 2021; 13:00:47] The process 0 is executing in memory (duration 28s)
+
+[Oct 27, 2021; 13:01:02] The process 1 is waiting for the semaphore in order to be located in memory
+
+[Oct 27, 2021; 13:01:02] The process 1 is being located in memory (4 cells required)
+
+[Oct 27, 2021; 13:01:02] The process 1 is executing in memory (duration 35s)
+
+[Oct 27, 2021; 13:01:15] The process 0 is waiting for the semaphore in order to free its memory
+
+[Oct 27, 2021; 13:01:15] The process 0 is freeing its memory (7 cells being freed)
+
+[Oct 27, 2021; 13:01:15] The process 0 has freed its memory (7 cells freed)
+
+[Oct 27, 2021; 13:01:17] The process 2 is waiting for the semaphore in order to be located in memory
+
+[Oct 27, 2021; 13:01:17] The process 2 is being located in memory (7 cells required)
+
+[Oct 27, 2021; 13:01:17] The process 2 is executing in memory (duration 37s)
+
+[Oct 27, 2021; 13:01:37] The process 1 is waiting for the semaphore in order to free its memory
+
+[Oct 27, 2021; 13:01:37] The process 1 is freeing its memory (4 cells being freed)
+
+[Oct 27, 2021; 13:01:37] The process 1 has freed its memory (4 cells freed)
+
+[Oct 27, 2021; 13:01:54] The process 2 is waiting for the semaphore in order to free its memory
+
+[Oct 27, 2021; 13:01:54] The process 2 is freeing its memory (7 cells being freed)
+
+[Oct 27, 2021; 13:01:54] The process 2 has freed its memory (7 cells freed)
