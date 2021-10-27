@@ -3,6 +3,7 @@
 
 /* Creates a new shared process array of given size, and returns its Id */
 int newSharedProcessArray (int size, char* keyFilePath){
+    int i;
     int shmid;
     struct ProcessArray* processArrayp; 
     key_t key; 
@@ -21,6 +22,10 @@ int newSharedProcessArray (int size, char* keyFilePath){
     }
     processArrayp->size = size;
     processArrayp->programIds[0] = getpid();
+    for(i = 1; i < size; i++)
+    {
+        processArrayp->programIds[i] = 0;
+    }
     detachSharedProcessArray(processArrayp);
     return shmid;
 }
@@ -96,6 +101,18 @@ void deleteProcess(struct ProcessArray *processArray, int pID){
     for (int i = 0; i < processArray->size; i++){
         if (processArray->array[i].pID == pID){
             processArray->array[i].pID = -1;
+            processArray->array[i].status = 0;
+            return;
+        }
+    }
+    return;
+}
+
+// Updates the status atribute for the process with the given ID
+void updateProcessStatus(struct ProcessArray *processArray, int pID, int status){
+    for (int i = 0; i < processArray->size; i++){
+        if (processArray->array[i].pID == pID){
+            processArray->array[i].status = status;
             return;
         }
     }
@@ -104,8 +121,12 @@ void deleteProcess(struct ProcessArray *processArray, int pID){
 
 // Prints the process array
 void printProcessArray(struct ProcessArray *processArray){
+    printf("PROCESS LIST\n");
     for (int i = 0; i < processArray->size; i++){
-        printProcess(processArray->array[i]);
+        printf("ID: %d", processArray->array[i].pID);
+        printf(" Status: %d", processArray->array[i].status);
+        printf(" Size: %d\n", processArray->array[i].size);
     }
+    printf("\n");
     return;
 }

@@ -191,11 +191,10 @@ void freeCells(struct MemoryArray *memoryArray, int pID)
 }
 
 // Prints the memory array
-void printMemoryArray(struct MemoryArray *memoryArray)
-{
-    for (int i = 0; i < memoryArray->size; i++)
-    {
-        printf("%d\n", memoryArray->array[i]);
+void printMemoryArray(struct MemoryArray *memoryArray){
+    printf("MEMORY\n");
+    for (int i = 0; i < memoryArray->size; i++){
+        printf("ID: %d\n", memoryArray->array[i]);
     }
     printf("\n");
     return;
