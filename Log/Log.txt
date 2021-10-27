@@ -1,3 +1,8 @@
-Dynamic memory allocation simulation log
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                 DYNAMIC MEMORY ALLOCATION LOG                  ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 
-This log file was created alongside the shared memory on: Oct 26, 2021; 15:55:12
+Created on: Oct 27, 2021; 11:50:03
+
+Shared memory initialized with 30 memory cells at: Oct 27, 2021; 11:50:03
+

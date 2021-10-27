@@ -1,7 +1,8 @@
 #include "Generator.h"
 
 // Creates and starts process threads periodically
-void createProcesses(int algorithm){
+void createProcesses(int algorithm)
+{
 
     // Seed the rand function
     srand(time(NULL));
@@ -23,7 +24,8 @@ void createProcesses(int algorithm){
     // Add id for finalizer
     pArray->programIds[1] = getpid();
 
-    while(true){
+    while (true)
+    {
         // TEMP
         if (pID >= 3)
             continue;
@@ -47,8 +49,9 @@ void createProcesses(int algorithm){
 }
 
 // Function that each thread executes
-void *runProcess(void *threadArgs){
-    
+void *runProcess(void *threadArgs)
+{
+
     // Unpack thread arguments
     struct Process *process = ((struct ThreadArgs *)threadArgs)->process;
     struct ProcessArray *pArray = ((struct ThreadArgs *)threadArgs)->processArray;
@@ -61,7 +64,7 @@ void *runProcess(void *threadArgs){
     // Lock process list and insert the process into it
     sem_wait(processSem);
     insertProcess(pArray, process);
-    // TO DO: update logs
+    appendLog(0, process->pID, process->size);
     sem_post(processSem);
 
     // Lock memory and insert into it
@@ -71,7 +74,7 @@ void *runProcess(void *threadArgs){
     sem_wait(processSem);
     process->status = 1;
     updateProcessStatus(pArray, process->pID, 1);
-    // TO DO: update logs
+    appendLog(1, process->pID, process->size);
     sem_post(processSem);
 
     // Run search and fit algorithm
@@ -85,15 +88,18 @@ void *runProcess(void *threadArgs){
 
     // Lock process list
     sem_wait(processSem);
-    if (success){
+    if (success)
+    {
         // Update status
         process->status = 2;
         updateProcessStatus(pArray, process->pID, 2);
-        // TO DO: update logs
-    } else {
+        appendLog(2, process->pID, process->size);
+    }
+    else
+    {
         // Exit the process list
         deleteProcess(pArray, process->pID);
-        // TO DO: update logs
+        appendLog(6, process->pID, process->size);
         // Kill thread
         sem_post(processSem);
         sem_post(memorySem);
@@ -109,7 +115,7 @@ void *runProcess(void *threadArgs){
     sem_wait(processSem);
     process->status = 3;
     updateProcessStatus(pArray, process->pID, 3);
-    // TO DO: update logs
+    appendLog(3, process->pID, process->size);
     sem_post(processSem);
 
     // Lock memory and exit it
@@ -119,7 +125,7 @@ void *runProcess(void *threadArgs){
     sem_wait(processSem);
     process->status = 4;
     updateProcessStatus(pArray, process->pID, 4);
-    // TO DO: update logs
+    appendLog(4, process->pID, process->size);
     sem_post(processSem);
 
     // Free memory cells
@@ -128,7 +134,7 @@ void *runProcess(void *threadArgs){
     // Lock process list and exit it
     sem_wait(processSem);
     deleteProcess(pArray, process->pID);
-    // TO DO: update logs
+    appendLog(5, process->pID, process->size);
     sem_post(processSem);
     sem_post(memorySem);
     return NULL;

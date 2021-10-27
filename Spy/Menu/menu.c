@@ -46,7 +46,7 @@ void generateMenu(struct MemoryArray *memory, struct ProcessArray *processes)
         break;
 
     case 3:
-        printf("Saliendo...");
+        printf("\nTerminating program...\n\n");
         break;
 
     default:

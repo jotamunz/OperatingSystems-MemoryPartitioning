@@ -4,14 +4,14 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/types.h>
-#include <semaphore.h> 
+#include <semaphore.h>
 #include <fcntl.h>
-#include<time.h>
+#include <time.h>
 #include "../../Process_Generator/ProcessArray/ProcessArray.h"
 #include "../../Process_Generator/MemoryArray/MemoryArray.h"
+#include "../../Spy/Logger/logger.h"
 #define PROCESSARRAYSIZE 3
 
-void initializerMenu(int *memArrayId, int *processArrayId);
+void initializerMenu();
 int openSemaphore(const char *name, int count);
-int createLog ();
 #endif
