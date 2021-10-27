@@ -11,6 +11,8 @@ void generateHeader()
 
 void generateMenu(struct MemoryArray *memory, struct ProcessArray *processes)
 {
+    generateHeader();
+
     if (memory == NULL || processes == NULL) {
         // Obtain a pointer to both structres in shared memory
         int key = getSharedProcessArrayId(KEYFILEPATH);
@@ -28,7 +30,6 @@ void generateMenu(struct MemoryArray *memory, struct ProcessArray *processes)
 
     int selection = 0;
     char trashCollector[10];
-    generateHeader();
     printf("[1] Check memory state \n\n");
     printf("[2] Process state \n\n");
     printf("[3] Exit \n\n");

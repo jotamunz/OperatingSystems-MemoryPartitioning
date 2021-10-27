@@ -8,11 +8,11 @@ int newSharedProcessArray (int size, char* keyFilePath){
     struct ProcessArray* processArrayp; 
     key_t key; 
     if ((key = ftok(keyFilePath, PROCESSARRAYSHAREDID)) < 0) {
-        printf ("\nError: No se ha logrado obtener la llave del arreglo de procesos compartido\n");
+        printf ("\nError: Could not obtain key to shared process list\n");
         return -1;
     }
     if ((shmid = shmget(key, sizeof(struct ProcessArray) + size * sizeof(struct Process), IPC_CREAT | 0666)) < 0) {
-        printf ("\nError: No ha sido posible reservar el arreglo de procesos compartidos\n");
+        printf ("\nError: Could not reserve the shared process list\n");
         return -1;
     }
     processArrayp = attachSharedProcessArray(shmid);
@@ -31,16 +31,15 @@ int newSharedProcessArray (int size, char* keyFilePath){
 }
 
 /* Gets the Id of an already created shared process array, given its key filepath */
-
 int getSharedProcessArrayId (char* keyFilePath) {
     int shmid;
     key_t key; 
     if ((key = ftok(keyFilePath, PROCESSARRAYSHAREDID)) < 0) {
-        printf ("\nError: No se ha logrado obtener la llave del arreglo de procesos compartido\n");
+        printf ("\nError: Could not obtain key to shared process list\n");
         return -1;
     }
     if ((shmid = shmget(key, 0, 0666)) < 0) {
-        printf ("\nNo ha sido posible obtener el Id del arreglo de procesos compartido\n");
+        printf ("\nError: Could not obtain ID of shared process list\n");
         return -1;
     }
     return shmid;
@@ -50,7 +49,7 @@ int getSharedProcessArrayId (char* keyFilePath) {
 struct ProcessArray* attachSharedProcessArray (int shmid) {
     struct ProcessArray* ProcessArrayp;
     if ((ProcessArrayp = shmat(shmid, NULL, 0)) == (struct ProcessArray*) -1) {
-        printf ("\nNo ha sido posible adjuntar el arreglo de procesos compartido\n");
+        printf ("\nError: Could not attach shared process list\n");
         return NULL;
     }
     return ProcessArrayp;
@@ -59,7 +58,7 @@ struct ProcessArray* attachSharedProcessArray (int shmid) {
 /* Detach a pointer to an already created shared process array, given its key filepath */
 int detachSharedProcessArray (struct ProcessArray* processArrayp) {
     if (shmdt(processArrayp) != 0){
-        printf ("\nNo ha sido posible desadjuntar el arreglo de procesos compartido\n");
+        printf ("\nError: Could not detach shared process list\n");
         return -1;
     }
     return 1;
@@ -68,12 +67,11 @@ int detachSharedProcessArray (struct ProcessArray* processArrayp) {
 /* Removes an already created shared process array, given its Id*/
 int removeSharedProcessArray (int arrayId) {
    if (shmctl(arrayId, IPC_RMID, 0) < 0) {
-       printf ("\nNo ha sido posible remover el arreglo de procesos compartido\n");
+       printf ("\nError: Could not remove shared process list\n");
        return -1;
    }
    return 1;
 }
-
 
 // Creates an array based on size full of Dummy Processes
 struct ProcessArray* newLocalProcessArray(int size){

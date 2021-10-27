@@ -12,6 +12,6 @@
 #include "../../Spy/Logger/logger.h"
 
 int createLog(int memSize);
-void appendLog(int, int, int);
+void appendLog(int, int, int, int);
 
 #endif

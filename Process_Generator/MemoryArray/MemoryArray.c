@@ -6,11 +6,11 @@ int newSharedMemoryArray (int size, char* keyFilePath){
     struct MemoryArray* memoryArrayp; 
     key_t key; 
     if ((key = ftok(keyFilePath, MEMARRAYSHAREDID)) < 0) {
-        printf ("\nError: No se ha logrado obtener la llave de la memoria compartida\n");
+        printf ("\nError: Could not obtain key to shared memory\n");
         return -1;
     }
     if ((shmid = shmget(key, sizeof(struct MemoryArray) + size * sizeof(int), IPC_CREAT | 0666)) < 0) {
-        printf ("\nError: No ha sido posible reservar la memoria compartida\n");
+        printf ("\nError: Could not reserve shared memory\n");
         return -1;
     }
     memoryArrayp = attachSharedMemoryArray(shmid);
@@ -28,11 +28,11 @@ int getSharedMemoryArrayId (char* keyFilePath) {
     int shmid;
     key_t key; 
     if ((key = ftok(keyFilePath, MEMARRAYSHAREDID)) < 0) {
-        printf ("\nError: No se ha logrado obtener la llave de la memoria compartida\n");
+        printf ("\nError: Could not obtain key to shared memory\n");
         return -1;
     }
     if ((shmid = shmget(key, 0, 0666)) < 0) {
-        printf ("\nId of shared memory block couldn't be found\n");
+        printf ("\nError: Could not obtain ID of shared memory\n");
         return -1;
     }
     return shmid;
@@ -42,7 +42,7 @@ int getSharedMemoryArrayId (char* keyFilePath) {
 struct MemoryArray* attachSharedMemoryArray (int shmid) {
     struct MemoryArray* MemoryArrayp;
     if ((MemoryArrayp = shmat(shmid, NULL, 0)) == (struct MemoryArray*) -1) {
-        printf ("\nNo ha sido posible adjuntar la memoria compartida\n");
+        printf ("\nError: Could not attach shared memory\n");
         return NULL;
     }
     return MemoryArrayp;
@@ -51,7 +51,7 @@ struct MemoryArray* attachSharedMemoryArray (int shmid) {
 // Detach a pointer to an already created shared memory array, given its key filepath
 int detachSharedMemoryArray (struct MemoryArray* MemoryArrayp) {
     if (shmdt(MemoryArrayp) != 0){
-        printf ("\nNo ha sido posible desadjuntar la memoria compartida\n");
+        printf ("\nError: Could not detach shared memory\n");
         return -1;
     }
     return 1;
@@ -60,7 +60,7 @@ int detachSharedMemoryArray (struct MemoryArray* MemoryArrayp) {
 // Removes an already created shared memory array, given its Id
 int removeSharedMemoryArray (int MemoryArrayId) {
    if (shmctl(MemoryArrayId, IPC_RMID, 0) < 0) {
-       printf ("\nNo ha sido posible remover la memoria compartida\n");
+       printf ("\nError: Could not remove shared memory\n");
        return -1;
    }
    return 1;
