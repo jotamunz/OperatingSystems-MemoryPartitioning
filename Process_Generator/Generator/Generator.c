@@ -25,10 +25,6 @@ void createProcesses(int algorithm)
 
     while (true)
     {
-        // TEMP
-        if (pID >= 10)
-            continue;
-
         // Create a new local process and bundle params
         struct Process *process = newLocalProcess(pID, algorithm);
         struct ThreadArgs *threadArgs = newLocalThreadArgs(process, pArray, mArray);
@@ -39,10 +35,7 @@ void createProcesses(int algorithm)
             perror("Failed to create thread\n");
 
         pID++;
-
-        // TEMP
-        //n = (rand() % (60 - 30 + 1)) + 30;
-        n = 15;
+        n = (rand() % (60 - 30 + 1)) + 30;
         sleep(n);
     }
 }

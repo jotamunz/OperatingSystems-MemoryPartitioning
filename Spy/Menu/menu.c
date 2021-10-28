@@ -75,7 +75,7 @@ void generateMemoryMenu(struct MemoryArray *memory, struct ProcessArray *process
     generateHeader();
     printf("CHECKING ON MEMORY STATE\n\n");
     printMemoryCells(memory, selection);
-    printf("Press enter to return to the main menu...\n");
+    printf("Press enter to refresh or c to exit...\n");
     char enter = 0;
     fgets(trashCollector, sizeof(trashCollector), stdin);
     while (enter != '\r' && enter != '\n')
@@ -83,6 +83,10 @@ void generateMemoryMenu(struct MemoryArray *memory, struct ProcessArray *process
         enter = getchar();
     }
     system("clear");
+    if (enter == '\r' || enter == '\n')
+    {
+        generateMemoryMenu(memory, processes);
+    }
     generateMenu(memory, processes);
 }
 
@@ -101,5 +105,9 @@ void generateProcessMenu(struct MemoryArray *memory, struct ProcessArray *proces
         enter = getchar();
     }
     system("clear");
+    if (enter == '\r' || enter == '\n')
+    {
+        generateProcessMenu(memory, processes);
+    }
     generateMenu(memory, processes);
 }

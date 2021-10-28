@@ -2,90 +2,108 @@
 ┃                 DYNAMIC MEMORY ALLOCATION LOG                  ┃
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 
-Created on: Oct 28, 2021; 15:46:10
+Created on: Oct 28, 2021; 16:03:24
 
-[Oct 28, 2021; 15:46:10] Shared memory initialized with 10 memory cells
+[Oct 28, 2021; 16:03:24] Shared memory initialized with 100 memory cells
 
-[Oct 28, 2021; 15:46:18] The process 0 is waiting for the semaphore in order to be located in memory
+[Oct 28, 2021; 16:03:39] The process 0 is waiting for the semaphore in order to be located in memory
 
-[Oct 28, 2021; 15:46:18] The process 0 is being located in memory (8 cells required)
+[Oct 28, 2021; 16:03:39] The process 0 is being located in memory (5 cells required)
 
-[Oct 28, 2021; 15:46:18] The process 0 is executing in memory (duration 47s)
+[Oct 28, 2021; 16:03:39] The process 0 is executing in memory (duration 35s)
 
-[Oct 28, 2021; 15:46:33] The process 1 is waiting for the semaphore in order to be located in memory
+[Oct 28, 2021; 16:04:14] The process 0 is waiting for the semaphore in order to free its memory
 
-[Oct 28, 2021; 15:46:33] The process 1 is being located in memory (10 cells required)
+[Oct 28, 2021; 16:04:14] The process 0 is freeing its memory (5 cells being freed)
 
-[Oct 28, 2021; 15:46:33] The process 1 didn´t find available space in memory (10 consecutive cells not available)
+[Oct 28, 2021; 16:04:14] The process 0 has freed its memory (5 cells freed)
 
-[Oct 28, 2021; 15:46:48] The process 2 is waiting for the semaphore in order to be located in memory
+[Oct 28, 2021; 16:04:33] The process 1 is waiting for the semaphore in order to be located in memory
 
-[Oct 28, 2021; 15:46:48] The process 2 is being located in memory (10 cells required)
+[Oct 28, 2021; 16:04:33] The process 1 is being located in memory (9 cells required)
 
-[Oct 28, 2021; 15:46:48] The process 2 didn´t find available space in memory (10 consecutive cells not available)
+[Oct 28, 2021; 16:04:33] The process 1 is executing in memory (duration 40s)
 
-[Oct 28, 2021; 15:47:03] The process 3 is waiting for the semaphore in order to be located in memory
+[Oct 28, 2021; 16:05:06] The process 2 is waiting for the semaphore in order to be located in memory
 
-[Oct 28, 2021; 15:47:03] The process 3 is being located in memory (1 cells required)
+[Oct 28, 2021; 16:05:06] The process 2 is being located in memory (7 cells required)
 
-[Oct 28, 2021; 15:47:03] The process 3 is executing in memory (duration 43s)
+[Oct 28, 2021; 16:05:06] The process 2 is executing in memory (duration 23s)
 
-[Oct 28, 2021; 15:47:05] The process 0 is waiting for the semaphore in order to free its memory
+[Oct 28, 2021; 16:05:13] The process 1 is waiting for the semaphore in order to free its memory
 
-[Oct 28, 2021; 15:47:05] The process 0 is freeing its memory (8 cells being freed)
+[Oct 28, 2021; 16:05:13] The process 1 is freeing its memory (9 cells being freed)
 
-[Oct 28, 2021; 15:47:05] The process 0 has freed its memory (8 cells freed)
+[Oct 28, 2021; 16:05:13] The process 1 has freed its memory (9 cells freed)
 
-[Oct 28, 2021; 15:47:18] The process 4 is waiting for the semaphore in order to be located in memory
+[Oct 28, 2021; 16:05:29] The process 2 is waiting for the semaphore in order to free its memory
 
-[Oct 28, 2021; 15:47:18] The process 4 is being located in memory (3 cells required)
+[Oct 28, 2021; 16:05:29] The process 2 is freeing its memory (7 cells being freed)
 
-[Oct 28, 2021; 15:47:18] The process 4 is executing in memory (duration 53s)
+[Oct 28, 2021; 16:05:29] The process 2 has freed its memory (7 cells freed)
 
-[Oct 28, 2021; 15:47:33] The process 5 is waiting for the semaphore in order to be located in memory
+[Oct 28, 2021; 16:05:56] The process 3 is waiting for the semaphore in order to be located in memory
 
-[Oct 28, 2021; 15:47:33] The process 5 is being located in memory (10 cells required)
+[Oct 28, 2021; 16:05:56] The process 3 is being located in memory (3 cells required)
 
-[Oct 28, 2021; 15:47:33] The process 5 didn´t find available space in memory (10 consecutive cells not available)
+[Oct 28, 2021; 16:05:56] The process 3 is executing in memory (duration 34s)
 
-[Oct 28, 2021; 15:47:46] The process 3 is waiting for the semaphore in order to free its memory
+[Oct 28, 2021; 16:06:30] The process 3 is waiting for the semaphore in order to free its memory
 
-[Oct 28, 2021; 15:47:46] The process 3 is freeing its memory (1 cells being freed)
+[Oct 28, 2021; 16:06:30] The process 3 is freeing its memory (3 cells being freed)
 
-[Oct 28, 2021; 15:47:46] The process 3 has freed its memory (1 cells freed)
+[Oct 28, 2021; 16:06:30] The process 3 has freed its memory (3 cells freed)
 
-[Oct 28, 2021; 15:47:48] The process 6 is waiting for the semaphore in order to be located in memory
+[Oct 28, 2021; 16:06:34] The process 4 is waiting for the semaphore in order to be located in memory
 
-[Oct 28, 2021; 15:47:48] The process 6 is being located in memory (3 cells required)
+[Oct 28, 2021; 16:06:34] The process 4 is being located in memory (9 cells required)
 
-[Oct 28, 2021; 15:47:48] The process 6 is executing in memory (duration 43s)
+[Oct 28, 2021; 16:06:34] The process 4 is executing in memory (duration 26s)
 
-[Oct 28, 2021; 15:48:03] The process 7 is waiting for the semaphore in order to be located in memory
+[Oct 28, 2021; 16:07:00] The process 4 is waiting for the semaphore in order to free its memory
 
-[Oct 28, 2021; 15:48:03] The process 7 is being located in memory (5 cells required)
+[Oct 28, 2021; 16:07:00] The process 4 is freeing its memory (9 cells being freed)
 
-[Oct 28, 2021; 15:48:03] The process 7 didn´t find available space in memory (5 consecutive cells not available)
+[Oct 28, 2021; 16:07:00] The process 4 has freed its memory (9 cells freed)
 
-[Oct 28, 2021; 15:48:11] The process 4 is waiting for the semaphore in order to free its memory
+[Oct 28, 2021; 16:07:14] The process 5 is waiting for the semaphore in order to be located in memory
 
-[Oct 28, 2021; 15:48:11] The process 4 is freeing its memory (3 cells being freed)
+[Oct 28, 2021; 16:07:14] The process 5 is being located in memory (5 cells required)
 
-[Oct 28, 2021; 15:48:11] The process 4 has freed its memory (3 cells freed)
+[Oct 28, 2021; 16:07:14] The process 5 is executing in memory (duration 20s)
 
-[Oct 28, 2021; 15:48:18] The process 8 is waiting for the semaphore in order to be located in memory
+[Oct 28, 2021; 16:07:34] The process 5 is waiting for the semaphore in order to free its memory
 
-[Oct 28, 2021; 15:48:18] The process 8 is being located in memory (9 cells required)
+[Oct 28, 2021; 16:07:34] The process 5 is freeing its memory (5 cells being freed)
 
-[Oct 28, 2021; 15:48:18] The process 8 didn´t find available space in memory (9 consecutive cells not available)
+[Oct 28, 2021; 16:07:34] The process 5 has freed its memory (5 cells freed)
 
-[Oct 28, 2021; 15:48:31] The process 6 is waiting for the semaphore in order to free its memory
+[Oct 28, 2021; 16:08:11] The process 6 is waiting for the semaphore in order to be located in memory
 
-[Oct 28, 2021; 15:48:31] The process 6 is freeing its memory (3 cells being freed)
+[Oct 28, 2021; 16:08:11] The process 6 is being located in memory (8 cells required)
 
-[Oct 28, 2021; 15:48:31] The process 6 has freed its memory (3 cells freed)
+[Oct 28, 2021; 16:08:11] The process 6 is executing in memory (duration 56s)
 
-[Oct 28, 2021; 15:48:33] The process 9 is waiting for the semaphore in order to be located in memory
+[Oct 28, 2021; 16:08:43] The process 7 is waiting for the semaphore in order to be located in memory
 
-[Oct 28, 2021; 15:48:33] The process 9 is being located in memory (10 cells required)
+[Oct 28, 2021; 16:08:43] The process 7 is being located in memory (3 cells required)
 
-[Oct 28, 2021; 15:48:33] The process 9 is executing in memory (duration 43s)
+[Oct 28, 2021; 16:08:43] The process 7 is executing in memory (duration 44s)
+
+[Oct 28, 2021; 16:09:07] The process 6 is waiting for the semaphore in order to free its memory
+
+[Oct 28, 2021; 16:09:07] The process 6 is freeing its memory (8 cells being freed)
+
+[Oct 28, 2021; 16:09:07] The process 6 has freed its memory (8 cells freed)
+
+[Oct 28, 2021; 16:09:27] The process 7 is waiting for the semaphore in order to free its memory
+
+[Oct 28, 2021; 16:09:27] The process 7 is freeing its memory (3 cells being freed)
+
+[Oct 28, 2021; 16:09:27] The process 7 has freed its memory (3 cells freed)
+
+[Oct 28, 2021; 16:09:28] The process 8 is waiting for the semaphore in order to be located in memory
+
+[Oct 28, 2021; 16:09:28] The process 8 is being located in memory (7 cells required)
+
+[Oct 28, 2021; 16:09:28] The process 8 is executing in memory (duration 37s)
