@@ -2,6 +2,9 @@
 
 void printMemoryCells(struct MemoryArray *memory, int cellsXline)
 {
+    if (cellsXline > memory->size)
+        cellsXline = memory->size;
+
     // Obtain memory sempahore
     sem_t *memorySem = sem_open(SEMMEMORY, 0, 0644, 0);
     // Lock
