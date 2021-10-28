@@ -22,7 +22,7 @@ int newSharedProcessArray (int size, char* keyFilePath){
     }
     processArrayp->size = size;
     processArrayp->programIds[0] = getpid();
-    for(i = 1; i < size; i++)
+    for(i = 1; i < 3; i++)
     {
         processArrayp->programIds[i] = 0;
     }

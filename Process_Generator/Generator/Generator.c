@@ -26,7 +26,7 @@ void createProcesses(int algorithm)
     while (true)
     {
         // TEMP
-        if (pID >= 3)
+        if (pID >= 10)
             continue;
 
         // Create a new local process and bundle params
